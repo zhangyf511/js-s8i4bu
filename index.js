@@ -1,6 +1,14 @@
 // Import stylesheets
 import './style.css';
-import { Map, TileLayer, layerGroup, Control, Marker, Icon } from 'leaflet';
+import {
+  Map,
+  TileLayer,
+  layerGroup,
+  Control,
+  Marker,
+  Icon,
+  GeoJSON,
+} from 'leaflet';
 
 // Write Javascript code!
 // const appDiv = document.getElementById('map');
@@ -26,8 +34,8 @@ const tdtthrLayer = new TileLayer(
 // layer.addTo(map);
 // map.setView([39.958, 116.395], 16);
 tdtoneLayer.addTo(map); //默认展示第一个
-map.setView([39.9522, 116.3949], 16);
-
+// map.setView([39.9522, 116.3949], 10);
+map.setView([39.95090487138684, 116.39014720916748], 16);
 const items = document.getElementsByName('base');
 items.forEach((item) => {
   item.onclick = (evt) => {
@@ -57,12 +65,68 @@ const layerControl = new Control.Layers(
   { collapsed: false }
 );
 layerControl.addTo(map);
-const marker = new Marker([39.9522, 116.3949], {
-  icon: new Icon({
-    iconUrl:
-      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-  }),
+
+//单个添加点位
+// const marker1 = new Marker([39.94758202338572, 116.38795852661131], {
+//   icon: new Icon({
+//     iconUrl:
+//       'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+//     iconSize: [25, 41],
+//     iconAnchor: [12, 41],
+//   }),
+// });
+
+// const marker2 = new Marker([39.95286642741858, 116.3911235332489], {
+//   icon: new Icon({
+//     iconUrl:
+//       'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+//     iconSize: [25, 41],
+//     iconAnchor: [12, 41],
+//   }),
+// });
+// marker1.addTo(map);
+// marker2.addTo(map);
+
+const geoData = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Point',
+        coordinates: [116.3911235332489, 39.95286642741858],
+      },
+    },
+    {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Point',
+        coordinates: [116.38795852661131, 39.94758202338572],
+      },
+    },
+    {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Point',
+        coordinates: [116.39014720916748, 39.95090487138684],
+      },
+    },
+  ],
+};
+//多个点位批量添加
+const layerGroup = new GeoJSON(geoData, {
+  pointToLayer: (geoJsonPoint, latlng) => {
+    return new Marker(latlng, {
+      icon: new Icon({
+        iconUrl:
+          'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+      }),
+    });
+  },
 });
-marker.addTo(map);
+layerGroup.addTo(map);
