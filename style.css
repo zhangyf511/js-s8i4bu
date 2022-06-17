@@ -1,0 +1,28 @@
+@import '~leaflet/dist/leaflet.css';
+h1,
+h2 {
+  font-family: Lato;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+#map {
+  width: 100%;
+  height: 100%;
+}
+.panel {
+  width: 200px;
+  height: 40px;
+  background-color: rgb(238, 238, 245);
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 1000;
+  line-height: 40px;
+  border-radius: 2px;
+  font-size: 12px;
+}
