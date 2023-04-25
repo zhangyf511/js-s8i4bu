@@ -35,7 +35,7 @@ const tdtthrLayer = new TileLayer(
 // map.setView([39.958, 116.395], 16);
 tdtoneLayer.addTo(map); //默认展示第一个
 // map.setView([39.9522, 116.3949], 10);
-map.setView([39.97146345961307, 116.39722824096622], 14);
+map.setView([39.66146345961307, 109.39722824096622], 10);
 const layerControl = new Control.Layers(
   { 一: tdtoneLayer, 二: tdttwoLayer, 三: tdtthrLayer },
   {},
@@ -49,12 +49,12 @@ const geoData = {
     {
       type: 'Feature',
       properties: {
-        name: '北京化工大学',
+        name: '井田南边界',
         type: '学校',
       },
       geometry: {
         type: 'Point',
-        coordinates: [116.41508102416992, 39.97014789511233],
+        coordinates: [109.41508102416992, 39.53],
       },
     },
     {
@@ -65,7 +65,7 @@ const geoData = {
       },
       geometry: {
         type: 'Point',
-        coordinates: [116.39722824096622, 39.97146345961307],
+        coordinates: [109.39722824096622, 39.97146345961307],
       },
     },
     {
@@ -76,7 +76,7 @@ const geoData = {
       },
       geometry: {
         type: 'Point',
-        coordinates: [116.4255952835083, 39.966957546049215],
+        coordinates: [109.4255952835083, 39.966957546049215],
       },
     },
   ],
